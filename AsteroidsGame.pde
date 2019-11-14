@@ -1,10 +1,17 @@
-//your variable declarations here
+Spaceship ship;
 public void setup() 
 {
-  //your code here
+	background(0);	
+	size(500,500);
+	ship = new Spaceship();
 }
 public void draw() 
 {
-  //your code here
+ ship.show();
 }
 
+public void keyPressed(){
+	if (key == UP) isAccelerating = true;
+	if (key == RIGHT) isRotatingRight = true;
+
+}
