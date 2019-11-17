@@ -28,9 +28,9 @@ public void draw()
 public void keyPressed()
 {
 	if (key == 'w') isAccelerating = true;
-	if (key == 'a') isRotatingRight = true;
+	if (key == 'd') isRotatingRight = true;
 	if (key == 's') isAcceleratingBackwards = true;
-	if (key == 'd') isRotatingLeft = true;
+	if (key == 'a') isRotatingLeft = true;
 	if (key == 'h')
 	{
 		ship.setX((int)(Math.random()*width));
@@ -44,7 +44,7 @@ public void keyPressed()
 public void keyReleased()
 {
 	if (key == 'w') isAccelerating = false;
-	if (key == 'a') isRotatingRight = false;
+	if (key == 'd') isRotatingRight = false;
 	if (key == 's') isAcceleratingBackwards = false;
-	if (key == 'd') isRotatingLeft = false;
+	if (key == 'a') isRotatingLeft = false;
 }
