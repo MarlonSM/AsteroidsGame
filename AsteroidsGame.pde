@@ -1,6 +1,7 @@
 boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace; 
 Star s[] = new Star[200];
 Spaceship ship;
+Asteroid asteroid;
 
 public void setup() 
 {
@@ -10,6 +11,7 @@ public void setup()
     	s[i] = new Star();
   	}
   	ship = new Spaceship();
+  	asteroid = new Asteroid();
 }
 public void draw() 
 {
@@ -19,6 +21,8 @@ public void draw()
   	}
   	ship.show();
 	ship.move();
+	asteroid.show();
+	asteroid.move();
 	if (isAccelerating == true) ship.accelerate(0.05);
 	if (isRotatingRight == true) ship.turn(3);
 	if (isAcceleratingBackwards == true) ship.accelerate(-0.025);
