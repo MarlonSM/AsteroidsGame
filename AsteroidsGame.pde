@@ -1,32 +1,40 @@
 boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace; 
-Star s[] = new Star[200];
 Spaceship ship;
-Asteroid asteroid;
+Star s[] = new Star[200];
+ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 
 public void setup() 
 {
 	background(0);	
 	size(750,750);
+	ship = new Spaceship();
 	for (int i = 0; i < 200; i++) {
     	s[i] = new Star();
+    	System.out.println(s[i].getCol());
   	}
-  	ship = new Spaceship();
-  	asteroid = new Asteroid();
+  	for (int i = 0; i < 5; i++){
+  		Asteroid a = new Asteroid();
+  		asteroids.add(a);
+  	}
+  	
+  	
 }
 public void draw() 
 {
 	background(0);
-	for (int i = 0; i < 200; i++) {
-    	s[i].show();
+  	for (int i = 0; i < 5; i++){
+  		asteroids.get(i).show();
+  		asteroids.get(i).move();
   	}
   	ship.show();
 	ship.move();
-	asteroid.show();
-	asteroid.move();
-	if (isAccelerating == true) ship.accelerate(0.05);
+	if (isAccelerating == true) ship.accelerate(0.04);
 	if (isRotatingRight == true) ship.turn(3);
-	if (isAcceleratingBackwards == true) ship.accelerate(-0.025);
+	if (isAcceleratingBackwards == true) ship.accelerate(-0.020);
 	if (isRotatingLeft == true) ship.turn(-3);
+	for (int i = 0; i < 200; i++) {
+    	s[i].show();
+  	}
 }
 
 public void keyPressed()
