@@ -10,7 +10,8 @@ class Star
   public void show()
   {
   	fill(myColor);
-    ellipse(myX, myY, 3, 3);
+    noStroke();
+    ellipse(myX, myY, 4, 4);
   }
 
   public int getCol(){return (int)myColor;}
