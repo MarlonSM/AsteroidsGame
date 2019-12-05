@@ -1,17 +1,16 @@
-boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace; 
+boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace, isShooting; 
 Spaceship ship;
 Star s[] = new Star[200];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-Bullet bullet;
+ArrayList <Bullet>  bullet = new ArrayList <Bullet>();
+int i = 0;
 
 public void setup() 
 {
 	size(750,750);
 	ship = new Spaceship();
-	bullet = new Bullet(ship);
 	for (int i = 0; i < 200; i++) {
     	s[i] = new Star();
-    	System.out.println(s[i].getCol());
   	}
   	
   	for (int i = 0; i < 10; i++){
@@ -31,18 +30,21 @@ public void draw()
   		asteroids.get(i).show();
   		asteroids.get(i).move();
   	}
+  	if (isShooting == true){
+		Bullet b = new Bullet(ship);
+		bullet.add(b);
+	}
+	for (Bullet temp : bullet){
+		temp.show();
+		temp.move();
+	}
   	if (isAccelerating == true) ship.accelerate(0.04);
 	if (isRotatingRight == true) ship.turn(3);
 	if (isAcceleratingBackwards == true) ship.accelerate(-0.020);
 	if (isRotatingLeft == true) ship.turn(-3);
 	ship.show();
 	ship.move();
-	bullet.show();
-	bullet.move();
-
-
 }
-
 public void keyPressed()
 {
 	if (key == 'w') isAccelerating = true;
@@ -57,6 +59,7 @@ public void keyPressed()
 		ship.setDirectionX(0);
 		ship.setDirectionY(0);
 	}
+	if (key == 'q') isShooting = true;
 }
 
 public void keyReleased()
@@ -65,4 +68,5 @@ public void keyReleased()
 	if (key == 'd') isRotatingRight = false;
 	if (key == 's') isAcceleratingBackwards = false;
 	if (key == 'a') isRotatingLeft = false;
+	if (key == 'q') isShooting = false;
 }
