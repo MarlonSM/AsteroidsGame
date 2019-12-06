@@ -2,9 +2,7 @@ boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft
 Spaceship ship;
 Star s[] = new Star[200];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
-ArrayList <Bullet>  bullet = new ArrayList <Bullet>();
-int i = 0;
-
+ArrayList <Bullet>  bullets = new ArrayList <Bullet>();
 public void setup() 
 {
 	size(750,750);
@@ -13,7 +11,7 @@ public void setup()
     	s[i] = new Star();
   	}
   	
-  	for (int i = 0; i < 10; i++){
+  	for (int i = 0; i < 20; i++){
   		Asteroid a = new Asteroid();
   		asteroids.add(a);
   	}
@@ -26,15 +24,11 @@ public void draw()
 	for (int i = 0; i < s.length; i++) {
     	s[i].show();
   	}
-  	for (int i = 0; i < asteroids.size(); i++){
-  		asteroids.get(i).show();
-  		asteroids.get(i).move();
-  	}
   	if (isShooting == true){
 		Bullet b = new Bullet(ship);
-		bullet.add(b);
+		bullets.add(b);
 	}
-	for (Bullet temp : bullet){
+	for (Bullet temp : bullets){
 		temp.show();
 		temp.move();
 	}
@@ -44,6 +38,19 @@ public void draw()
 	if (isRotatingLeft == true) ship.turn(-3);
 	ship.show();
 	ship.move();
+	for (int i = 0; i < asteroids.size(); i++){
+  		asteroids.get(i).show();
+  		asteroids.get(i).move();
+  	}
+  	for (int v = 0; v < bullets.size(); v++){
+  		for (int i = 0; i < asteroids.size(); i++){
+  			if (17> dist(bullets.get(v).getX(), bullets.get(v).getY(), asteroids.get(i).getX(), asteroids.get(i).getY())){
+  				asteroids.remove(i);
+  				bullets.remove(v);
+  				break;
+  			}
+  		}
+  	}
 }
 public void keyPressed()
 {
@@ -59,7 +66,6 @@ public void keyPressed()
 		ship.setDirectionX(0);
 		ship.setDirectionY(0);
 	}
-	if (key == 'q') isShooting = true;
 }
 
 public void keyReleased()
@@ -68,5 +74,11 @@ public void keyReleased()
 	if (key == 'd') isRotatingRight = false;
 	if (key == 's') isAcceleratingBackwards = false;
 	if (key == 'a') isRotatingLeft = false;
-	if (key == 'q') isShooting = false;
 }
+
+public void mousePressed(){isShooting = true;}
+
+public void mouseReleased(){isShooting = false;}
+
+//public void mouse 
+
