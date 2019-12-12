@@ -1,4 +1,4 @@
-boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace, isShooting; 
+boolean isAccelerating, isAcceleratingBackwards, isRotatingRight, isRotatingLeft, isHyperspace; 
 Spaceship ship;
 Star s[] = new Star[200];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
@@ -24,10 +24,6 @@ public void draw()
 	for (int i = 0; i < s.length; i++) {
     	s[i].show();
   	}
-  	if (isShooting == true){
-		Bullet b = new Bullet(ship);
-		bullets.add(b);
-	}
 	for (Bullet temp : bullets){
 		temp.show();
 		temp.move();
@@ -41,6 +37,10 @@ public void draw()
 	for (int i = 0; i < asteroids.size(); i++){
   		asteroids.get(i).show();
   		asteroids.get(i).move();
+  	}
+  	if (asteroids.size() <= 10){
+  		Asteroid a = new Asteroid();
+  		asteroids.add(a);
   	}
   	for (int v = 0; v < bullets.size(); v++){
   		for (int i = 0; i < asteroids.size(); i++){
@@ -66,6 +66,11 @@ public void keyPressed()
 		ship.setDirectionX(0);
 		ship.setDirectionY(0);
 	}
+	if (key == 32)
+	{
+		Bullet b = new Bullet(ship);
+		bullets.add(b);
+	}
 }
 
 public void keyReleased()
@@ -76,9 +81,4 @@ public void keyReleased()
 	if (key == 'a') isRotatingLeft = false;
 }
 
-public void mousePressed(){isShooting = true;}
-
-public void mouseReleased(){isShooting = false;}
-
-//public void mouse 
 
