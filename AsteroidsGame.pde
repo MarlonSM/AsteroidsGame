@@ -3,6 +3,9 @@ Spaceship ship;
 Star s[] = new Star[200];
 ArrayList <Asteroid> asteroids = new ArrayList <Asteroid>();
 ArrayList <Bullet>  bullets = new ArrayList <Bullet>();
+int score = 0;
+int life = 100;
+PFont font;
 public void setup() 
 {
 	size(750,750);
@@ -15,6 +18,7 @@ public void setup()
   		Asteroid a = new Asteroid();
   		asteroids.add(a);
   	}
+
   	
   	
 }
@@ -44,13 +48,28 @@ public void draw()
   	}
   	for (int v = 0; v < bullets.size(); v++){
   		for (int i = 0; i < asteroids.size(); i++){
-  			if (17> dist(bullets.get(v).getX(), bullets.get(v).getY(), asteroids.get(i).getX(), asteroids.get(i).getY())){
+  			if (17> dist(bullets.get(v).getX(), bullets.get(v).getY(), asteroids.get(i).getX(), asteroids.get(i).getY()))
+  			{
+  				score++;
   				asteroids.remove(i);
   				bullets.remove(v);
   				break;
   			}
   		}
   	}
+  	for (int i = 0; i < asteroids.size(); i++){
+  		if (17 > dist(ship.getX(), ship.getY(), asteroids.get(i).getX(), asteroids.get(i).getY()))
+  		{
+  			life-=20;
+  			asteroids.remove(i);
+  		}
+  	}
+  	fill(255);
+  	font = createFont("Yu Gothic Bold", 20);
+	textFont(font);
+  	text("Score: "+score, 5, 20);
+  	System.out.println("Score: "+score);
+  	System.out.println("Life: " +life);
 }
 public void keyPressed()
 {
