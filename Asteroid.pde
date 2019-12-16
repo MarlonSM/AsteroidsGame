@@ -8,9 +8,9 @@ class Asteroid extends Floater
 		while (rotSpeed == 0){
 			rotSpeed = (int)(Math.random()*7)-3;
 		}
-		corners = 4;
-		int [] xS = {16,16,-16,-16};
-		int [] yS = {16,-16,-16,16};
+		corners = 8;
+		int [] xS = {16,8,-8,-16,-16,-8,8,16};
+    	int [] yS = {8,16,16,8,-8,-16,-16,-8};
 		xCorners = xS;
 		yCorners = yS;
 		myColor = color(150,150,150);

@@ -48,7 +48,7 @@ public void draw()
   	}
   	for (int v = 0; v < bullets.size(); v++){
   		for (int i = 0; i < asteroids.size(); i++){
-  			if (17> dist(bullets.get(v).getX(), bullets.get(v).getY(), asteroids.get(i).getX(), asteroids.get(i).getY()))
+  			if (16> dist(bullets.get(v).getX(), bullets.get(v).getY(), asteroids.get(i).getX(), asteroids.get(i).getY()))
   			{
   				score++;
   				asteroids.remove(i);
@@ -68,8 +68,6 @@ public void draw()
   	font = createFont("Yu Gothic Bold", 20);
 	textFont(font);
   	text("Score: "+score, 5, 20);
-  	System.out.println("Score: "+score);
-  	System.out.println("Life: " +life);
 }
 public void keyPressed()
 {
